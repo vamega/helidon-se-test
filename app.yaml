@@ -1,0 +1,37 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: helidon-se-test
+  labels:
+    app: helidon-se-test
+spec:
+  type: ClusterIP
+  selector:
+    app: helidon-se-test
+  ports:
+    - name: tcp
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
+---
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: helidon-se-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: helidon-se-test
+  template:
+    metadata:
+      labels:
+        app: helidon-se-test
+        version: v1
+    spec:
+      containers:
+      - name: helidon-se-test
+        image: helidon-se-test
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8080
