@@ -1,16 +1,14 @@
 package com.bitfiddling.helidon.service;
 
-import java.util.concurrent.atomic.AtomicReference;
-
 import io.helidon.config.Config;
 import io.helidon.http.Status;
 import io.helidon.webserver.http.HttpRules;
 import io.helidon.webserver.http.HttpService;
 import io.helidon.webserver.http.ServerRequest;
 import io.helidon.webserver.http.ServerResponse;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class GreetService implements HttpService {
-
 
     /**
      * The config value for the key {@code greeting}.
@@ -32,8 +30,7 @@ public class GreetService implements HttpService {
      */
     @Override
     public void routing(HttpRules rules) {
-        rules
-                .get("/", this::getDefaultMessageHandler)
+        rules.get("/", this::getDefaultMessageHandler)
                 .get("/{name}", this::getMessageHandler)
                 .put("/greeting", this::updateGreetingHandler);
     }
@@ -44,8 +41,7 @@ public class GreetService implements HttpService {
      * @param request  the server request
      * @param response the server response
      */
-    private void getDefaultMessageHandler(ServerRequest request,
-                                          ServerResponse response) {
+    private void getDefaultMessageHandler(ServerRequest request, ServerResponse response) {
         sendResponse(response, "World");
     }
 
@@ -55,8 +51,7 @@ public class GreetService implements HttpService {
      * @param request  the server request
      * @param response the server response
      */
-    private void getMessageHandler(ServerRequest request,
-                                   ServerResponse response) {
+    private void getMessageHandler(ServerRequest request, ServerResponse response) {
         String name = request.path().pathParameters().get("name");
         sendResponse(response, name);
     }
@@ -72,8 +67,7 @@ public class GreetService implements HttpService {
         if (message.getGreeting() == null) {
             Message errorMessage = new Message();
             errorMessage.setMessage("No greeting provided");
-            response.status(Status.BAD_REQUEST_400)
-                    .send(errorMessage);
+            response.status(Status.BAD_REQUEST_400).send(errorMessage);
             return;
         }
 
@@ -87,10 +81,7 @@ public class GreetService implements HttpService {
      * @param request  the server request
      * @param response the server response
      */
-    private void updateGreetingHandler(ServerRequest request,
-                                       ServerResponse response) {
+    private void updateGreetingHandler(ServerRequest request, ServerResponse response) {
         updateGreetingFromJson(request.content().as(Message.class), response);
     }
-
 }
-
