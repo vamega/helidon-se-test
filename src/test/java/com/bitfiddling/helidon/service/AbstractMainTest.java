@@ -1,5 +1,7 @@
 package com.bitfiddling.helidon.service;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.is;
 
 import io.helidon.http.Status;
 import io.helidon.webclient.api.ClientResponseTyped;
@@ -7,12 +9,7 @@ import io.helidon.webclient.http1.Http1Client;
 import io.helidon.webclient.http1.Http1ClientResponse;
 import io.helidon.webserver.http.HttpRouting;
 import io.helidon.webserver.testing.junit5.SetUpRoute;
-
 import org.junit.jupiter.api.Test;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
-import static org.hamcrest.CoreMatchers.containsString;
 
 abstract class AbstractMainTest {
     private final Http1Client client;
@@ -26,7 +23,6 @@ abstract class AbstractMainTest {
         Main.routing(builder);
     }
 
-    
     @Test
     void testMetricsObserver() {
         try (Http1ClientResponse response = client.get("/observe/metrics").request()) {
@@ -34,13 +30,10 @@ abstract class AbstractMainTest {
         }
     }
 
-    
     @Test
     void testSimpleGreet() {
         ClientResponseTyped<String> response = client.get("/simple-greet").request(String.class);
         assertThat(response.status(), is(Status.OK_200));
         assertThat(response.entity(), is("Hello World!"));
     }
-
-
 }
