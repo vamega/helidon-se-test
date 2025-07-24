@@ -3,9 +3,7 @@ package com.bitfiddling.helidon.service;
 import io.helidon.config.Config;
 import io.helidon.logging.common.LogConfig;
 import io.helidon.webserver.WebServer;
-import io.helidon.webserver.http.HttpFeature;
 import io.helidon.webserver.http.HttpRouting;
-import java.util.List;
 
 /**
  * The application main class.
@@ -30,7 +28,6 @@ public class Main {
         Config config = Config.create();
         Config.global(config);
 
-        List<HttpFeature> routes;
         WidgetController widgetController = new WidgetController();
         WidgetController$Route widgetControllerRoute = new WidgetController$Route(widgetController);
 
