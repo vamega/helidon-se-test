@@ -18,6 +18,7 @@
         <avaje.http.version>3.3</avaje.http.version>
         <avaje.inject.version>11.5</avaje.inject.version>
 	    <maven.compiler.proc>full</maven.compiler.proc>
+        <version.lib.log4j>2.25.1</version.lib.log4j>
     </properties>
 
     <dependencies>
@@ -88,6 +89,22 @@
             <groupId>io.avaje</groupId>
             <artifactId>avaje-inject</artifactId>
             <version>${avaje.inject.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.helidon.logging</groupId>
+            <artifactId>helidon-logging-log4j</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-jul</artifactId>
         </dependency>
         <!-- Annotation processors -->
         <dependency>

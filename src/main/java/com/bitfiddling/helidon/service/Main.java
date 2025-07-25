@@ -1,14 +1,18 @@
 package com.bitfiddling.helidon.service;
 
+import static org.apache.logging.log4j.LogManager.getLogger;
+
 import io.helidon.config.Config;
-import io.helidon.logging.common.LogConfig;
 import io.helidon.webserver.WebServer;
 import io.helidon.webserver.http.HttpRouting;
+import org.apache.logging.log4j.Logger;
 
 /**
  * The application main class.
  */
 public class Main {
+
+    public static final Logger LOGGER = getLogger(Main.class);
 
     /**
      * Cannot be instantiated.
@@ -20,10 +24,6 @@ public class Main {
      * @param args command line arguments.
      */
     public static void main(String[] args) {
-
-        // load logging configuration
-        LogConfig.configureRuntime();
-
         // initialize global config from default configuration
         Config config = Config.create();
         Config.global(config);
@@ -41,7 +41,7 @@ public class Main {
                 .build()
                 .start();
 
-        System.out.println("WEB server is up! http://localhost:" + server.port() + "/simple-greet");
+        LOGGER.info("WEB server is up! http://localhost:{}", server.port());
     }
 
     /**
