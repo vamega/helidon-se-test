@@ -17,6 +17,7 @@
         <mainClass>com.bitfiddling.helidon.service.Main</mainClass>
         <avaje.http.version>3.3</avaje.http.version>
         <avaje.inject.version>11.5</avaje.inject.version>
+        <avaje.jsonb.version>3.6</avaje.jsonb.version>
 	    <maven.compiler.proc>full</maven.compiler.proc>
         <version.lib.log4j>2.25.1</version.lib.log4j>
         <record.builder.version>47</record.builder.version>
@@ -39,14 +40,14 @@
             <groupId>io.helidon.health</groupId>
             <artifactId>helidon-health-checks</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.helidon.http.media</groupId>
-            <artifactId>helidon-http-media-jackson</artifactId>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--            <artifactId>jackson-databind</artifactId>-->
+<!--        </dependency>-->
+<!--        <dependency>-->
+<!--            <groupId>io.helidon.http.media</groupId>-->
+<!--            <artifactId>helidon-http-media-jackson</artifactId>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>io.helidon.logging</groupId>
             <artifactId>helidon-logging-jul</artifactId>
@@ -113,6 +114,11 @@
             <version>${record.builder.version}</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>io.avaje</groupId>
+            <artifactId>avaje-jsonb</artifactId>
+            <version>${avaje.jsonb.version}</version>
+        </dependency>
         <!-- Annotation processors -->
         <dependency>
             <groupId>io.avaje</groupId>
@@ -127,6 +133,12 @@
             <version>${avaje.inject.version}</version>
             <scope>provided</scope>
             <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.avaje</groupId>
+            <artifactId>avaje-jsonb-generator</artifactId>
+            <version>${avaje.jsonb.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.soabase.record-builder</groupId>
