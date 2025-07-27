@@ -22,26 +22,28 @@ public class GreetController {
      */
     @Get("/")
     Message getDefaultMessageHandler() {
-        Message message = new Message();
-        message.setMessage(String.format("%s %s!", greeting.get(), "World"));
+        Message message = new MessageBuilder()
+                .message(String.format("%s %s!", greeting.get(), "World"))
+                .build();
         return message;
     }
 
     @Get("/{name}")
     Message getMessageHandler(String name) {
-        Message message = new Message();
-        message.setMessage(String.format("%s %s", greeting.get(), name));
+        Message message = new MessageBuilder()
+                .message(String.format("%s %s", greeting.get(), name))
+                .build();
         return message;
     }
 
     @Put("/greeting")
     Message updateGreetingFromJson(Message message) {
-        if (message.getGreeting() == null) {
-            Message errorMessage = new Message();
-            errorMessage.setMessage("No greeting provided");
+        if (message.greeting() == null) {
+            Message errorMessage =
+                    new MessageBuilder().message("No greeting provided").build();
             throw new JsonHttpException(errorMessage);
         }
-        greeting.set(message.getGreeting());
+        greeting.set(message.greeting());
         throw new JsonHttpException("", Status.NO_CONTENT_204);
     }
 }

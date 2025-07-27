@@ -1,26 +1,7 @@
 package com.bitfiddling.helidon.service;
 
-public class Message {
+import io.soabase.recordbuilder.core.RecordBuilder;
 
-    private String message;
-
-    private String greeting;
-
-    public Message() {}
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public String getMessage() {
-        return this.message;
-    }
-
-    public void setGreeting(String greeting) {
-        this.greeting = greeting;
-    }
-
-    public String getGreeting() {
-        return this.greeting;
-    }
-}
+@RecordBuilder
+@RecordBuilder.Options(publicBuilderConstructors = true)
+public record Message(String message, String greeting) {}

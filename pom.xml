@@ -19,6 +19,7 @@
         <avaje.inject.version>11.5</avaje.inject.version>
 	    <maven.compiler.proc>full</maven.compiler.proc>
         <version.lib.log4j>2.25.1</version.lib.log4j>
+        <record.builder.version>47</record.builder.version>
     </properties>
 
     <dependencies>
@@ -106,6 +107,12 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-jul</artifactId>
         </dependency>
+        <dependency>
+            <groupId>io.soabase.record-builder</groupId>
+            <artifactId>record-builder-core</artifactId>
+            <version>${record.builder.version}</version>
+            <scope>provided</scope>
+        </dependency>
         <!-- Annotation processors -->
         <dependency>
             <groupId>io.avaje</groupId>
@@ -118,6 +125,13 @@
             <groupId>io.avaje</groupId>
             <artifactId>avaje-inject-generator</artifactId>
             <version>${avaje.inject.version}</version>
+            <scope>provided</scope>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>io.soabase.record-builder</groupId>
+            <artifactId>record-builder-processor</artifactId>
+            <version>${record.builder.version}</version>
             <scope>provided</scope>
             <optional>true</optional>
         </dependency>
